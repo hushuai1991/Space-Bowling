@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Space Bowling</title>
+		<link rel="stylesheet" href="css/game.css" type="text/css" media="screen" title="no title" charset="utf-8"/>
+		<script src="js/jquery-2.2.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/game.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="game">
+			<div id="gameUI">
+				<div id="gameIntro">
+					<h1>太空保龄球</h1>
+					<p>Space Bowling</p>
+					<p><a id="gameRule" class="button" href="">游戏规则</a></p>
+					<p><a id="gamePlay1" class="button" href="">开始游戏</a></p>		
+				</div>
+				<div id="gameContext">
+					<p><h1>游戏规则</h1></p>
+					<p id="gameRuleContext">使用鼠标拖动方式发射大球，撞击位于圆形区域内的小球，拖动的距离越远，发射速度越大，目的是将小球撞出圆外，撞击的次数和使用的时间越少越好，直至所有小球都被撞出圆外，游戏结束。</p>
+					<p id="luck">祝你好运！</p>
+					<p><a id="gamePlay2" class="button" href="">开始游戏</a></p>
+				</div>
+				<div id="gameStats">
+					<p>剩余个数:<span id="gameRemaining"></span></p>
+					<p>撞击次数:<span class="gameScore"></span></p>
+					<p>游戏时间：<span class="gameTime"></span>s</p>
+					<p><a class="gameSlient">关闭声音</a></p>
+					<p><a class="gameSound">开启声音</a></p>
+					<p><a class="gameReset">重新开始</a></p>
+				</div>
+				<div id="gameComplete">
+					<h1>闯关成功!</h1>
+					<p>用时：<span class="gameTime"></span>秒</p>
+					<p>次数：<span class="gameScore"></span>次</p>
+					<!-- <p><a class="gameTable button">查看成绩</a></p> -->
+					<p><a class="gameReset button" href="">再来一次</a></p>
+				</div>
+				
+			</div>
+			<canvas id="gameCanvas" width="350" height="600"></canvas>
+			<audio id="background" loop>
+				<source src="sounds/background.mp3"></source>
+				<source src="sounds/background.ogg"></source>
+			</audio>
+			<audio id="hit" >
+				<source src="sounds/hit.mp3"></source>
+				<source src="sounds/hit.ogg"></source>
+			</audio>
+			<audio id="win">
+				<source src="sounds/win.mp3"></source>
+				<source src="sounds/win.ogg"></source>
+			</audio>
+			<audio id="disappear">
+				<source src="sounds/disappear.mp3"></source>
+			</audio>
+		</div>
+	</body>
+</html>
