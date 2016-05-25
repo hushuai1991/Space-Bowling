@@ -34,10 +34,26 @@
 					<h1>闯关成功!</h1>
 					<p>用时：<span class="gameTime"></span>秒</p>
 					<p>次数：<span class="gameScore"></span>次</p>
-					<!-- <p><a class="gameTable button">查看成绩</a></p> -->
+					<input id="name" type="text" placeholder="请输入您的姓名..." />
+					<button id="save">提交</button>
+					<p id="failmsg"></p>
+					<p id="successmsg"></p>
+					<p><a class="gameTable button">排行榜</a></p>
 					<p><a class="gameReset button" href="">再来一次</a></p>
 				</div>
-				
+				<div id="scoreTable">
+					<table>
+						<thead>
+							<tr>
+								<th>姓名</th>
+								<th>次数</th>
+								<th>用时</th>
+							</tr>
+						</thead>
+						<tbody></tbody>
+					</table>
+					<p><a class="gameReset button" href="">再来一次</a></p>
+				</div>	
 			</div>
 			<canvas id="gameCanvas" width="350" height="600"></canvas>
 			<audio id="background" loop>
