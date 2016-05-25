@@ -23,6 +23,13 @@ $(function(){
 	var score;
 	var scoreTime;
 	var scoreTimeout;
+	var name;
+	
+	var scoreArr=[];
+	var uiSave=$("#save");
+	var gameTable=$(".gameTable");
+	var uiTable=$("#scoreTable");
+	var showstr;
 	
 	var ui = $("#gameUI");
 	var uiIntro = $("#gameIntro");
@@ -188,6 +195,7 @@ $(function(){
 		uiStats.hide();
 		uiComplete.hide();
 		uiContext.hide();
+		uiTable.hide();
 		uiRule.click(function(e){
 			e.preventDefault();
 			uiIntro.hide();
@@ -209,6 +217,7 @@ $(function(){
 		uiReset.click(function(e){
 			e.preventDefault();
 			uiComplete.hide();
+			uiTable.hide();
 			clearTimeout(scoreTimeout);
 			startGame();
 			background.play();
@@ -226,7 +235,67 @@ $(function(){
 			uiSound.hide();
 			uiSlient.show();
 		});
+		uiSave.click(function(e){
+			e.preventDefault();
+			save();
+		});
+		gameTable.click(function(e){
+			e.preventDefault();
+			uiComplete.hide();
+			createScoreTable();
+			uiTable.show();	
+		});
 	};
+	
+	function createScoreTable(){
+		showstr="";
+		uiTable.find("tbody").empty();
+		var rows=scoreArr.length;
+		if(rows>8){
+			rows=8;
+		}
+		for(var i=0;i<rows;i++){
+			showstr+="<tr>";
+			showstr+="<td>"+scoreArr[i].name+"</td>";
+			showstr+="<td>"+scoreArr[i].score+"</td>";
+			showstr+="<td>"+scoreArr[i].scoreTime+"s"+"</td>";
+			showstr+="</tr>";
+		}
+		uiTable.find("tbody").prepend(showstr);
+
+		
+	}
+	
+	function save(){
+		name=$("#name").get(0).value;
+		if(name==""){
+			$("#failmsg").html("姓名不能为空！").show();
+			return;
+		}
+		$("#failmsg").hide();
+		$("#save").attr("disabled","disabled");
+		$("#successmsg").html("提交成功！").show();
+		var scoreJson={};
+		scoreJson.name=name;
+		scoreJson.score=score;
+		scoreJson.scoreTime=scoreTime;
+		scoreArr.push(scoreJson);
+		scoreArr.sort(function(a,b){
+			if(a.score>b.score){
+				return 1;
+			}else if(a.score<b.score){
+				return -1;
+			}else{
+				if(a.scoreTime>b.scoreTime){
+					return 1;
+				}else if(a.scoreTime<b.scoreTime){
+					return -1;
+				}else{
+					return 0;
+				}
+				
+			}
+		});
 	
 	function timer(){
 		if(playGame){
@@ -351,7 +420,11 @@ $(function(){
 				uiRemaining.html(remaining);
 				if(remaining==0){
 					playGame=false;
+					$("#name").get(0).value="";
 					uiStats.hide();
+					$("#failmsg").hide();
+					$("#successmsg").hide();
+					$("#save").removeAttr("disabled");
 					uiComplete.show();
 					$(window).unbind("mousedown");
 					$(window).unbind("mouseup");
