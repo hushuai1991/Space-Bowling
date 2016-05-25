@@ -296,6 +296,7 @@ $(function(){
 				
 			}
 		});
+	}
 	
 	function timer(){
 		if(playGame){
