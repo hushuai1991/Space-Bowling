@@ -132,7 +132,7 @@ $(function(){
 		  
 		}
 		
-		$(window).mousedown(function(e){
+		$(window).on("mousedown tap",function(e){
 			if(!playerSelected&&player.x==playerOriginalX&&player.y==playerOriginalY){
 				var canvasOffset=canvas.offset();
 				var canvasX=Math.floor(e.pageX-canvasOffset.left);
@@ -154,7 +154,7 @@ $(function(){
 			}
 		});
 		
-		$(window).mousemove(function(e){
+		$(window).on("mousemove swipe",function(e){
 			if(playerSelected){
 				var canvasOffset=canvas.offset();
 				var canvasX=Math.floor(e.pageX-canvasOffset.left);
@@ -174,7 +174,7 @@ $(function(){
 			}
 		});
 		
-		$(window).mouseup(function(e){
+		$(window).on("mouseup",function(e){
 			if(playerSelected){
 				var dX=powerX-player.x;
 				var dY=powerY-player.y;
