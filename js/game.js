@@ -132,7 +132,7 @@ $(function(){
 		  
 		}
 		
-		$(window).on("mousedown tap",function(e){
+		$(window).on("mousedown",function(e){
 			if(!playerSelected&&player.x==playerOriginalX&&player.y==playerOriginalY){
 				var canvasOffset=canvas.offset();
 				var canvasX=Math.floor(e.pageX-canvasOffset.left);
@@ -154,7 +154,7 @@ $(function(){
 			}
 		});
 		
-		$(window).on("mousemove swipe",function(e){
+		$(window).on("mousemove",function(e){
 			if(playerSelected){
 				var canvasOffset=canvas.offset();
 				var canvasX=Math.floor(e.pageX-canvasOffset.left);
